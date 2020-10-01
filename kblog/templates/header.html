@@ -1,0 +1,32 @@
+   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'okayama:index' %}">Start Bootstrap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          　{% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_app:detail' request.user.id %}">{{request.user.username}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'okayama:add' %}">投稿</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_app:logout' %}">ログアウト</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_app:signup' %}">新規登録</a>
+          </li>
+     
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_app:login' %}">ログイン</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+ {% block content %}  
+ <!-- Page Header -->
+  <header class="masthead" style="background-image: url('/static/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Clean Blog</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+　　　　{% for post in posts%}
+        <div class="post-preview">
+          <a href="{% url 'okayama:detail' post_id=post.id %}">
+            <h2 class="post-title">
+              {{post.title|truncatechars:10 | linebreaksbr}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{ post.text|truncatechars:17 }}
+            </h3>
+          </a>
+          <p class="post-meta">{{post.created_at}}
+            <a href="{% url 'user_app:detail' post.user.id %}">{{post.user.username}}</a>
+            on September 24, 2019</p>
+        </div>
+        <hr>
+　　　　{% endfor %}
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="/static/js/clean-blog.min.js"></script>
+ 
+  <!-- もともとのコード ↓-->
+  <!-- <h1 class="mt-5 pt-4 text-center">ブログサイト</h1>
+  <div class="d-flex justify-content-center flex-wrap">
+  {% for post in posts%}
+  <a href="{% url 'okayama:detail' post_id=post.id %}">
+   <div class="card m-4" style="min-width: 300; max-height: 490;">
+     {% if post.image %}
+     <img style="max-width: 300; max-height: 300;" class="card-img-top" src="{{ post.image.url }}">
+     {% else %}
+     <div class="p-1 border border-secondary text-center pt-5" style="min-width: 300; min-height: 225;">No Image</div>
+     {% endif %}
+     <div class="card-body">
+       <h4 class="card-title">{{post.title|truncatechars:10 | linebreaksbr}}</h4>
+       <p class="card-text">
+         {{ post.text|truncatechars:17 }}
+       </p>
+      </a> 
+      <p></p>
+        <p>#{{post.tag}}</p>
+        <p>{{post.created_at}} |
+        <a href="{% url 'user_app:detail' post.user.id %}">{{post.user.username}}</a></p>
+   </div>
+  </div>
+  {% endfor %}
+  </div> -->
+ 
+  {% endblock %}
+
